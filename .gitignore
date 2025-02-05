@@ -1,0 +1,23 @@
+# Root .gitignore
+.DS_Store
+.vscode/
+*.pem
+.env
+
+/backend/node_modules/
+/backend/dist/
+/backend/coverage/
+/backend/.env
+/backend/*.log
+/backend/prisma/*.db
+/backend/prisma/migrations/
+
+/frontend/node_modules/
+/frontend/.next/
+/frontend/out/
+/frontend/coverage/
+/frontend/.env*
+/frontend/*.log
+/frontend/build/
+/frontend/.vercel
+.aider*
