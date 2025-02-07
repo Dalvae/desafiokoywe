@@ -1,18 +1,18 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { PrismaService } from './dal/prisma/prisma.service';
 import { ScheduleModule } from '@nestjs/schedule';
-import { HealthService } from './dal/health/health.service';
 import { HealthModule } from './dal/health/health.module';
 import { QuoteModule } from './bll/quote/quote.module';
 import { QuoteController } from './dal/quote/quote.controller';
+import { AuthModule } from './modules/auth/auth.module';
 
 @Module({
   imports: [
     ScheduleModule.forRoot(),
     HealthModule,
-    QuoteModule
+    QuoteModule,
+    AuthModule, // Import the AuthModule
   ],
   controllers: [AppController, QuoteController],
   providers: [AppService],
