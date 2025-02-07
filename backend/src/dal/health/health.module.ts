@@ -8,5 +8,6 @@ import { PrismaService } from '../prisma/prisma.service';
   imports: [TerminusModule],
   controllers: [HealthController],
   providers: [HealthService, PrismaService],
+  exports: [PrismaService], // Export PrismaService
 })
 export class HealthModule {}
