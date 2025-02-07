@@ -3,11 +3,12 @@ import { QuoteFacade } from '../../facades/quote/quote.facade';
 import { CreateQuoteDto, QuoteResponseDto } from '../../models/dtos/quote.dto';
 import { AuthGuard } from '@nestjs/passport';
 import { CurrentUser } from '../../decorators/current-user.decorator';
+import { AuthService } from '../../facades/users/auth.service';
 
 @Controller('quote')
 @UseGuards(AuthGuard('jwt')) // Apply the JWT auth guard to all endpoints in this controller
 export class QuoteController {
-  constructor(private readonly quoteFacade: QuoteFacade) {}
+  constructor(private readonly quoteFacade: QuoteFacade, private readonly authService: AuthService) {}
 
   @Post()
   async createQuote(
