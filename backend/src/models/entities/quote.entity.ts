@@ -1,5 +1,3 @@
-// src/models/entities/quote.entity.ts
-
 export class Quote {
   id: string;
   fromCurrency: string;
@@ -9,4 +7,5 @@ export class Quote {
   convertedAmount: number;
   createdAt: Date;
   expiresAt: Date;
+  userId: string; // Add this line
 }

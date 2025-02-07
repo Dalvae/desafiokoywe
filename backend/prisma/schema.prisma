@@ -16,4 +16,15 @@ model Quote {
   convertedAmount Float
   createdAt       DateTime @default(now())
   expiresAt       DateTime
+  userId          String   // Add this line
+  user            User     @relation(fields: [userId], references: [id]) // Add this line
+}
+
+model User {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  password  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  quotes    Quote[]
 }
