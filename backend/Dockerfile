@@ -3,7 +3,7 @@ WORKDIR /app
 
 # Instalar openssl y netcat-openbsd
 RUN apt-get update -y && \
-    apt-get install -y openssl netcat-openbsd && \
+    apt-get install -y openssl netcat-openbsd procps && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
