@@ -9,7 +9,7 @@ export class QuoteService {
   constructor(private readonly exchangeRateService: ExchangeRateService) {}
 
   async createQuote(createQuoteDto: CreateQuoteDto): Promise<Quote> {
-    const { amount, fromCurrency, toCurrency } = createQuoteDto;
+    const { amount, fromCurrency, toCurrency, userId } = createQuoteDto;
 
     // Get real-time rate from exchange rate service
     const rate = await this.exchangeRateService.getRate(fromCurrency, toCurrency);
@@ -26,6 +26,7 @@ export class QuoteService {
       convertedAmount: amount * rate,
       createdAt: new Date(),
       expiresAt: new Date(Date.now() + 15 * 60 * 1000),
+      userId: userId,
     };
 
     // TODO: Save to database
