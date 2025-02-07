@@ -1,14 +1,17 @@
-// health.controller.ts
 import { Controller, Get } from '@nestjs/common';
+import { HealthCheck, HealthCheckService } from '@nestjs/terminus';
 import { HealthService } from './health.service';
-import { Interval } from '@nestjs/schedule';
 
 @Controller('health')
 export class HealthController {
-  constructor(private readonly healthService: HealthService) {}
+  constructor(
+    private health: HealthCheckService,
+    private healthService: HealthService,
+  ) {}
 
   @Get()
+  @HealthCheck()
   check() {
-    return this.healthService.checkDb();
+    return this.health.check([() => this.healthService.checkDb()]);
   }
 }
