@@ -1,6 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 
-export class CreateQuoteDto {
+export class CreateQuote {
   @ApiProperty({ description: 'The amount to be converted' })
   amount: number;
 
@@ -10,11 +10,14 @@ export class CreateQuoteDto {
   @ApiProperty({ description: 'The currency to convert to' })
   toCurrency: string;
 
-  @ApiProperty({ description: 'The ID of the user requesting the quote', required: false })
+  @ApiProperty({
+    description: 'The ID of the user requesting the quote',
+    required: false,
+  })
   userId?: string;
 }
 
-export class QuoteResponseDto {
+export class QuoteResponse {
   @ApiProperty({ description: 'The unique identifier of the quote' })
   id: string;
 
