@@ -2,7 +2,7 @@ export class CreateQuoteDto {
   amount: number;
   fromCurrency: string;
   toCurrency: string;
-  userId?: string; // Add this line
+  userId?: string;
 }
 
 export class QuoteResponseDto {
@@ -14,5 +14,5 @@ export class QuoteResponseDto {
   convertedAmount: number;
   createdAt: Date;
   expiresAt: Date;
-  userId: string; // Add this line
+  userId: string;
 }
