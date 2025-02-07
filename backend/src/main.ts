@@ -9,7 +9,7 @@ async function bootstrap() {
     .setTitle('Desafio Koywe')
     .setDescription('API description')
     .setVersion('1.0')
-    .addBearerAuth() // Agrega configuración para Bearer Auth (JWT)
+    .addBearerAuth()
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);

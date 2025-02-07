@@ -1,11 +1,20 @@
 #!/bin/bash
 set -e
 
-# Retry migrations up to 3 times
+echo "Waiting for PostgreSQL to be ready..."
+while ! nc -z postgres 5432; do
+  echo "Waiting for PostgreSQL with user ${POSTGRES_USER} on database ${POSTGRES_DB}..."
+  sleep 1
+done
+echo "PostgreSQL is ready!"
+
+echo "Creating initial migration..."
+DATABASE_URL="postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB}" pnpm prisma migrate dev --name init
+
+echo "Applying migrations..."
 for i in {1..3}; do
-  # Run migrations
   echo "Running Prisma migrations (attempt $i)..."
-  pnpm prisma migrate deploy
+  DATABASE_URL="postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB}" pnpm prisma migrate deploy
   if [ $? -eq 0 ]; then
     echo "Prisma migrations completed successfully."
     break
@@ -15,16 +24,8 @@ for i in {1..3}; do
   fi
 done
 
-# Check if migrations were successful
-if [ $i -gt 3 ]; then
-  echo "Prisma migrations failed after multiple retries. Exiting."
-  exit 1
-fi
-
-# Generate Prisma client
 echo "Generating Prisma client..."
 pnpm prisma generate
 
-# Start the application
-echo "Starting the application..."
+echo "Starting the application in development mode..."
 pnpm start:dev

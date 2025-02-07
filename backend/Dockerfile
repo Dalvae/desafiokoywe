@@ -1,16 +1,25 @@
 FROM node:20-slim
 WORKDIR /app
-RUN apk add --no-cache make gcc g++ python3
 
+# Instalar openssl y netcat-openbsd
+RUN apt-get update -y && \
+    apt-get install -y openssl netcat-openbsd && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+# Instalar pnpm
 RUN npm install -g pnpm
 
+# Copiar archivos de dependencias
 COPY package.json pnpm-lock.yaml ./
 
-RUN pnpm install --frozen-lockfile || exit 1
+# Instalar dependencias
+RUN pnpm install --frozen-lockfile
 
+# Copiar el resto del código
 COPY . .
 
-COPY entrypoint.sh .
+# Dar permisos al script de entrada
 RUN chmod +x entrypoint.sh
 
-CMD ["./entrypoint.sh"]
+CMD ["/bin/bash", "./entrypoint.sh"]
