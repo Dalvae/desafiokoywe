@@ -16,7 +16,7 @@ model Quote {
   convertedAmount Float
   createdAt       DateTime @default(now())
   expiresAt       DateTime
-  userId          String  
+  userId          String
   user            User     @relation(fields: [userId], references: [id]) // Add this line
 }
 
