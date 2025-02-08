@@ -5,13 +5,20 @@ interface QuoteDisplayProps {
   toCurrency: string;
 }
 
-const QuoteDisplay = ({ rate, convertedAmount, fromCurrency, toCurrency }: QuoteDisplayProps) => {
+const QuoteDisplay = ({
+  rate,
+  convertedAmount,
+  fromCurrency,
+  toCurrency,
+}: QuoteDisplayProps) => {
   if (rate === null || convertedAmount === null) {
-    return <p>Crea una cotización para ver los resultados.</p>;
+    return (
+      <p className="text-black">Crea una cotización para ver los resultados.</p>
+    );
   }
 
   return (
-    <div className="p-4 border rounded-md shadow-sm">
+    <div className="p-4 border rounded-md shadow-sm text-black">
       <h3 className="text-lg font-semibold">Resultado de la Cotización</h3>
       <p>
         Tasa de cambio: 1 {fromCurrency} = {rate} {toCurrency}
