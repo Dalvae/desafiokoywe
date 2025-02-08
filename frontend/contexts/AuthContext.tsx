@@ -3,7 +3,7 @@
 import { createContext, useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { authService } from '@/services/auth.service';
-import jwtDecode from 'jwt-decode';
+import { jwtDecode, JwtPayload } from 'jwt-decode';
 
 interface AuthContextType {
   user: any | null;
@@ -12,9 +12,7 @@ interface AuthContextType {
   logout: () => void;
 }
 
-interface JWTPayload {
-  exp: number;
-  iat: number;
+interface JWTPayload extends JwtPayload {
   sub: string;
   email: string;
 }
@@ -34,41 +32,14 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     const token = localStorage.getItem('accessToken');
     if (token) {
       setUser({ token });
-      checkTokenExpiration(token);
     }
   }, []);
-
-  const checkTokenExpiration = (token: string) => {
-    try {
-      const decodedToken: JWTPayload = jwtDecode(token);
-      const expirationTime = decodedToken.exp * 1000; // Convert seconds to milliseconds
-      const currentTime = Date.now();
-      const timeLeft = expirationTime - currentTime;
-
-      if (timeLeft <= 0) {
-        // Token has expired
-        console.log('Token has expired');
-        logout();
-        return;
-      }
-
-      // Set a timeout to logout when the token expires
-      setTimeout(() => {
-        console.log('Token expired, logging out');
-        logout();
-      }, timeLeft);
-    } catch (error) {
-      console.error('Error decoding token:', error);
-      logout();
-    }
-  };
 
   const login = async (email: string, password: string) => {
     try {
       const data = await authService.login(email, password);
       localStorage.setItem('accessToken', data.access_token);
       setUser({ token: data.access_token });
-      checkTokenExpiration(data.access_token);
       router.push('/quote'); // Redirect to quote page after login
     } catch (error: any) {
       console.error('Login failed:', error);
@@ -81,7 +52,6 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       const data = await authService.register(email, password);
       localStorage.setItem('accessToken', data.access_token);
       setUser({ token: data.access_token });
-      checkTokenExpiration(data.access_token);
       router.push('/quote'); // Redirect to quote page after registration
     } catch (error: any) {
       console.error('Registration failed:', error);
