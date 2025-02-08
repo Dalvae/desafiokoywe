@@ -54,3 +54,15 @@ La aplicación quedó configurada para ejecutarse en modo de desarrollo.
 - **Backend (NestJS):** Puerto `3000` (configurable mediante la variable de entorno `API_PORT`).
 - La API del backend se redirige automáticamente a la interfaz de Swagger en `/api`. Donde se pueden correr diversas pruebas.
 - **Frontend (Next.js):** Puerto `3001` (configurable mediante la variable de entorno `FRONTEND_PORT`).
+
+## Tests
+
+Para ejecutar los tests, abre una nueva terminal conectada al contenedor de Docker del backend:
+
+```bash
+npm run test:e2e
+```
+
+Este comando ejecutará el runner de Jest con la configuración especificada en `test/jest-e2e.json`. Los resultados de las pruebas se mostrarán en la terminal.
+
+_Nota: Asegúrate de que el contenedor del backend esté en ejecución antes de correr los tests._
