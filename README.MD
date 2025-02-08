@@ -7,14 +7,14 @@ Este proyecto es una API para convertir divisas fiat y criptomonedas, construida
 - **Backend:** NestJS
 - **Frontend:** Next.js
 - **Base de Datos:** PostgreSQL con Prisma
-- **Inteligencia Artificial:** Flash Gemini con Aider para iteración rápida
+- **Inteligencia Artificial:** gemini-2.0-flash-001 con Aider para iteración rápida
 
 ## Configuración
 
 1.  Copiar el archivo `.env.copy` a `.env`:
 
     ```bash
-    cp .env copy .env
+    cp .env.copy .env
     ```
 
     Este archivo contiene las variables de entorno necesarias para la aplicación. Asegúrate de configurar las variables correctamente:
@@ -47,18 +47,10 @@ docker-compose up
 
 Esto levantará tanto el backend como el frontend, junto con la base de datos PostgreSQL.
 
-La aplicación está configurada para ejecutarse en modo de desarrollo, lo que permite la recarga automática de cambios.
+La aplicación quedó configurada para ejecutarse en modo de desarrollo.
 
 ### Puertos de la Aplicación
 
 - **Backend (NestJS):** Puerto `3000` (configurable mediante la variable de entorno `API_PORT`).
-  - La API del backend se redirige automáticamente a la interfaz de Swagger en `/api`.
+- La API del backend se redirige automáticamente a la interfaz de Swagger en `/api`. Donde se pueden correr diversas pruebas.
 - **Frontend (Next.js):** Puerto `3001` (configurable mediante la variable de entorno `FRONTEND_PORT`).
-
-## Notas
-
-- Este proyecto fue desarrollado con una iteración rápida utilizando Flash Gemini con Aider.
-- La aplicación se ejecuta en modo de desarrollo, pero se entiende la estructura y el flujo general.
-- La autenticación está implementada con JWT.
-- Prisma se utiliza para interactuar con la base de datos PostgreSQL.
-- El frontend está construido con Next.js y se conecta al backend a través de la variable de entorno `NEXT_PUBLIC_API_URL`.
