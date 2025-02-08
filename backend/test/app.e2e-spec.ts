@@ -18,7 +18,7 @@ describe('AppController (e2e)', () => {
   it('/ (GET)', () => {
     return request(app.getHttpServer())
       .get('/')
-      .expect(200)
-      .expect('Hello World!');
+      .expect(302)
+      //.expect('Hello World!'); // No longer expect this, as it redirects
   });
 });
