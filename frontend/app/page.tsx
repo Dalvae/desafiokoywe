@@ -28,7 +28,7 @@ const AVAILABLE_CURRENCIES = {
 export default function Home() {
   const { user } = useContext(AuthContext);
   const [amount, setAmount] = useState<number>(100);
-  const [fromCurrency, setFromCurrency] = useState<string>("USD");
+  const [fromCurrency, setFromCurrency] = useState<string>("");
   const [toCurrency, setToCurrency] = useState<string>("CLP");
   const [quoteResult, setQuoteResult] = useState<{
     rate: number | null;
