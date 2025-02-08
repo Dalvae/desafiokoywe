@@ -4,7 +4,6 @@ import { AppService } from './app.service';
 import { ScheduleModule } from '@nestjs/schedule';
 import { HealthModule } from './facades/health.module';
 import { QuoteModule } from './facades/quote.module';
-import { QuoteController } from './dal/quote.controller';
 import { UsersModule } from './facades/users.module';
 
 @Module({
@@ -12,9 +11,9 @@ import { UsersModule } from './facades/users.module';
     ScheduleModule.forRoot(),
     HealthModule,
     QuoteModule,
-    UsersModule, // Import the UsersModule
+    UsersModule,
   ],
-  controllers: [AppController, QuoteController],
+  controllers: [AppController],
   providers: [AppService],
 })
 export class AppModule {}
