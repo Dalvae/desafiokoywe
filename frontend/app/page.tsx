@@ -1,5 +1,5 @@
 "use client";
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import AuthContext from "../contexts/AuthContext";
 import LoginForm from "../components/LoginForm";
 import { quotesService } from "@/services/quotes.service";
@@ -25,6 +25,12 @@ const AVAILABLE_CURRENCIES = {
   XRP: "Ripple",
 };
 
+const getRandomCurrency = () => {
+  const currencies = Object.keys(AVAILABLE_CURRENCIES);
+  const randomIndex = Math.floor(Math.random() * currencies.length);
+  return currencies[randomIndex];
+};
+
 export default function Home() {
   const { user } = useContext(AuthContext);
   const [amount, setAmount] = useState<number>(100);
@@ -34,6 +40,11 @@ export default function Home() {
     rate: number | null;
     convertedAmount: number | null;
   }>({ rate: null, convertedAmount: null });
+
+  useEffect(() => {
+    setFromCurrency(getRandomCurrency());
+    setToCurrency(getRandomCurrency());
+  }, []);
 
   const handleCreateQuote = async () => {
     try {
