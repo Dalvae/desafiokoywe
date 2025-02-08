@@ -1,6 +1,6 @@
 import { Controller, Post, Body, HttpCode, HttpStatus } from '@nestjs/common';
-import { AuthService } from './auth.service';
-import { LoginDto, RegisterDto } from '../../models/dtos/auth.dto';
+import { AuthService } from '../facades/users/auth.service';
+import { LoginDto, RegisterDto } from '../models/dtos/auth.dto';
 import { UsersFacade } from './users.facade'; // Import UsersFacade
 import { Inject } from '@nestjs/common';
 

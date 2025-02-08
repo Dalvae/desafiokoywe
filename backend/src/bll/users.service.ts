@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { PrismaService } from '../../dal/prisma/prisma.service';
-import { RegisterDto } from '../../models/dtos/auth.dto';
+import { PrismaService } from '../dal/prisma/prisma.service';
+import { RegisterDto } from '../models/dtos/auth.dto';
 import * as argon2 from 'argon2';
 
 @Injectable()

@@ -1,9 +1,9 @@
 import { Controller, Post, Body, UseGuards, Get, Param } from '@nestjs/common';
 import { QuoteFacade } from '../../facades/quote/quote.facade';
 import { AuthGuard } from '@nestjs/passport';
-import { CurrentUser } from '../../decorators/current-user.decorator';
-import { CreateQuote, QuoteResponse } from '../../models/dtos/quote.dto';
-import { Quote } from '../../models/entities/quote.entity';
+import { CurrentUser } from '../decorators/current-user.decorator';
+import { CreateQuote, QuoteResponse } from '../models/dtos/quote.dto';
+import { Quote } from '../models/entities/quote.entity';
 import { ApiBearerAuth, ApiCreatedResponse, ApiOkResponse } from '@nestjs/swagger';
 
 @Controller('quote')

@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
-import { ExchangeRateService } from '../../providers/exchange-rate/exchange-rate.service';
-import { Quote } from '../../models/entities/quote.entity';
-import { PrismaService } from '../../dal/prisma/prisma.service';
-import { CreateQuote } from '../../models/dtos/quote.dto';
+import { ExchangeRateService } from '../providers/exchange-rate/exchange-rate.service';
+import { Quote } from '../models/entities/quote.entity';
+import { PrismaService } from '../dal/prisma/prisma.service';
+import { CreateQuote } from '../models/dtos/quote.dto';
 
 @Injectable()
 export class QuoteService {
