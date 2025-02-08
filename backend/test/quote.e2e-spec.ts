@@ -48,8 +48,8 @@ describe('QuoteController (e2e)', () => {
     // Create a quote
     const createQuoteDto: CreateQuote = {
       amount: 100,
-      fromCurrency: 'USD',
-      toCurrency: 'EUR',
+      fromCurrency: 'CLP',
+      toCurrency: 'BTC',
     };
 
     const response = await request(app.getHttpServer())
