@@ -41,7 +41,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       router.push('/quote'); // Redirect to quote page after login
     } catch (error: any) {
       console.error('Login failed:', error);
-      alert('Login failed: ' + error.response?.data?.message || error.message);
+      alert('Login failed: ' + (error.response?.data?.message || error.message || 'An unexpected error occurred'));
     }
   };
 
@@ -54,7 +54,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       router.push('/quote'); // Redirect to quote page after registration
     } catch (error: any) {
       console.error('Registration failed:', error);
-      alert('Registration failed: ' +  error.response?.data?.message || error.message);
+      alert('Registration failed: ' + (error.response?.data?.message || error.message || 'An unexpected error occurred'));
     }
   };
 
