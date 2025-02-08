@@ -1,12 +1,12 @@
 "use client";
 
-import { useState, useContext } from 'react';
-import AuthContext from '../contexts/AuthContext';
-import Link from 'next/link';
+import { useState, useContext } from "react";
+import AuthContext from "../contexts/AuthContext";
+import Link from "next/link";
 
 const RegisterForm = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const { register } = useContext(AuthContext);
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -23,21 +23,27 @@ const RegisterForm = () => {
           placeholder="Email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          className="border p-2 rounded"
+          className="border p-2 rounded text-black font-bold"
         />
         <input
           type="password"
           placeholder="Contraseña"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          className="border p-2 rounded"
+          className="border p-2 rounded text-black font-bold"
         />
-        <button type="submit" className="bg-green-500 text-white p-2 rounded hover:bg-green-700">
+        <button
+          type="submit"
+          className="bg-green-500 text-white p-2 rounded hover:bg-green-700"
+        >
           Registrarse
         </button>
       </form>
       <p className="mt-4">
-        ¿Ya tienes una cuenta? <Link href="/" className="text-blue-500">Inicia Sesión</Link>
+        ¿Ya tienes una cuenta?{" "}
+        <Link href="/" className="text-blue-500">
+          Inicia Sesión
+        </Link>
       </p>
     </div>
   );
