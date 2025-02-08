@@ -29,6 +29,18 @@ apiClient.interceptors.request.use(
     return config;
   },
   (error) => {
+    console.error("Request error:", error);
+    return Promise.reject(error);
+  }
+);
+
+apiClient.interceptors.response.use(
+  (response) => {
+    console.log("Response:", response);
+    return response;
+  },
+  (error) => {
+    console.error("Response error:", error);
     return Promise.reject(error);
   }
 );
