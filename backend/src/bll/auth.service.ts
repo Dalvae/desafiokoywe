@@ -1,7 +1,7 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import { PrismaService } from '../../dal/prisma/prisma.service';
-import { LoginDto } from '../../models/dtos/auth.dto';
+import { PrismaService } from '../dal/prisma/prisma.service';
+import { LoginDto } from '../models/dtos/auth.dto';
 import * as argon2 from 'argon2';
 
 @Injectable()

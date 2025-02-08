@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { TerminusModule } from '@nestjs/terminus';
-import { HealthController } from './health.controller';
+import { HealthController } from '../dal/health.controller';
 import { HealthService } from '../bll/health.service';
 import { PrismaService } from '../dal/prisma/prisma.service';
 

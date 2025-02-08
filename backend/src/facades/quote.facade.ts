@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
-import { QuoteService } from '../../bll/quote/quote.service';
-import { Quote } from '../../models/entities/quote.entity';
-import { CreateQuote, QuoteResponse } from '../../models/dtos/quote.dto';
+import { QuoteService } from '../bll/quote/quote.service';
+import { Quote } from '../models/entities/quote.entity';
+import { CreateQuote, QuoteResponse } from '../models/dtos/quote.dto';
 
 @Injectable()
 export class QuoteFacade {
