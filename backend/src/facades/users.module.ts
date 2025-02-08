@@ -1,7 +1,6 @@
 import { Module } from '@nestjs/common';
 import { UserService } from '../bll/users.service';
 import { PrismaService } from '../dal/prisma/prisma.service';
-import { UsersFacade } from './users.facade';
 import { AuthService } from '../bll/auth.service';
 import { AuthController } from '../dal/auth.controller';
 import { JwtModule } from '@nestjs/jwt';
@@ -17,7 +16,7 @@ import { JwtStrategy } from '../bll/jwt.strategy';
     }),
   ],
   controllers: [AuthController],
-  providers: [UserService, PrismaService, UsersFacade, AuthService, JwtStrategy],
-  exports: [UsersFacade, AuthService],
+  providers: [UserService, PrismaService, AuthService, JwtStrategy],
+  exports: [AuthService],
 })
 export class UsersModule {}
