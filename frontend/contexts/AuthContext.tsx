@@ -40,7 +40,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       const data = await authService.login(email, password);
       localStorage.setItem('accessToken', data.access_token);
       setUser({ token: data.access_token });
-      router.push('/quote'); // Redirect to quote page after login
+      router.push('/'); // Redirect to home page after login
     } catch (error: any) {
       console.error('Login failed:', error);
       alert('Login failed: ' + (error.response?.data?.message || error.message || 'An unexpected error occurred'));
@@ -52,7 +52,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       const data = await authService.register(email, password);
       localStorage.setItem('accessToken', data.access_token);
       setUser({ token: data.access_token });
-      router.push('/quote'); // Redirect to quote page after registration
+      router.push('/'); // Redirect to home page after registration
     } catch (error: any) {
       console.error('Registration failed:', error);
       alert('Registration failed: ' + (error.response?.data?.message || error.message || 'An unexpected error occurred'));
