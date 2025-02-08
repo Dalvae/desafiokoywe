@@ -1,5 +1,5 @@
 import { Controller, Post, Body, UseGuards, Get, Param } from '@nestjs/common';
-import { QuoteFacade } from '../facades/quote.facade';
+import { QuoteService } from '../bll/quote.service';
 import { AuthGuard } from '@nestjs/passport';
 import { CurrentUser } from '../decorators/current-user.decorator';
 import { CreateQuote, QuoteResponse } from '../models/dtos/quote.dto';
@@ -10,7 +10,7 @@ import { ApiBearerAuth, ApiCreatedResponse, ApiOkResponse } from '@nestjs/swagge
 @UseGuards(AuthGuard('jwt')) // Apply the JWT auth guard to all endpoints in this controller
 @ApiBearerAuth() // Add Bearer Auth to Swagger
 export class QuoteController {
-  constructor(private readonly quoteFacade: QuoteFacade) {}
+  constructor(private readonly quoteService: QuoteService) {}
 
   @Post()
   @ApiCreatedResponse({
@@ -22,7 +22,7 @@ export class QuoteController {
     @CurrentUser() user: any, // The user is injected by the JwtStrategy
   ): Promise<Quote> {
     // Now the userId is available in the user object
-    return this.quoteFacade.createQuote({ ...createQuoteDto, userId: user.userId });
+    return this.quoteService.createQuote({ ...createQuoteDto, userId: user.userId });
   }
 
   @Get(':id')
@@ -31,6 +31,6 @@ export class QuoteController {
     type: QuoteResponse,
   })
   async getQuote(@Param('id') id: string): Promise<QuoteResponse | null> {
-    return this.quoteFacade.getQuoteById(id);
+    return this.quoteService.getQuoteById(id);
   }
 }
