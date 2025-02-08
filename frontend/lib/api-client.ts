@@ -19,9 +19,12 @@ console.log("apiClient baseURL:", apiClient.defaults.baseURL);
 apiClient.interceptors.request.use(
   (config) => {
     console.log("Making request to:", config.url);
-    const token = localStorage.getItem("accessToken");
-    if (token) {
-      config.headers.Authorization = `Bearer ${token}`;
+    // Conditionally add the token only on the client-side
+    if (typeof window !== 'undefined') {
+      const token = localStorage.getItem("accessToken");
+      if (token) {
+        config.headers.Authorization = `Bearer ${token}`;
+      }
     }
     return config;
   },
